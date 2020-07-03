@@ -3,5 +3,6 @@ body {
   background-color: #fff;
   background-image: url(../src/accessories/background/dragon_balls.jpg);
   background-repeat: no-repeat;
+  background-attachment: fixed;
   background-size: cover;
 }
