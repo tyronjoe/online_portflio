@@ -2,6 +2,7 @@ import React from "react";
 import { Form, Button } from "react-bootstrap";
 import Hero from "../components/Hero";
 import Content from "../components/Content";
+import axios from "axios";
 
 class ContactPage extends React.Component {
   constructor(props) {
@@ -31,6 +32,22 @@ class ContactPage extends React.Component {
     this.setState({
       disabled: true,
     });
+
+    axios
+      .post("http://localhost:3030/api/email", this.state)
+      .then((res) => {
+        if (res.data.success) {
+          this.setState({ disabled: false, emailSent: true });
+        } else {
+          this.setState({ disabled: false, emailSent: false });
+        }
+      })
+      .catch((err) => {
+        this.setState({
+          disabled: false,
+          emailSent: false,
+        });
+      });
   };
 
   render() {
